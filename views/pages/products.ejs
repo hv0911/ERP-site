@@ -1,0 +1,81 @@
+<%- include("../partials/head") %>
+
+<%- include("../partials/sidebar") %>
+
+<div class="main">
+
+
+    <!-- table data -->
+
+    <div class="heading">
+       <h3><a href="/product">Add Product</a></h3>
+    </div>
+
+    <div class="headin">
+        <h2>ProductList</h2>
+    </div>
+
+    <% if(!productList){ %>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">SKU</th>
+                  <th scope="col">Brand</th>
+                  <th class="col">Model</th>
+                  <th class="col">Purchase Price</th>
+                  <th class="col">Selling Price</th>
+                  <!-- <th class="col">Stock</th>  (later) --> 
+                  <th class="col">Category</th>
+                  <!-- <th class="col">Stock Alert</th> -->
+                  <th class="col">Action</th>
+                </tr>
+              </thead>
+        </table>
+       <% } else {  %>
+    <table class="table">
+        
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">SL</th>
+                <th scope="col">Name</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Brand</th>
+                <th class="col">Model</th>
+                <th class="col">Purchase Price</th>
+                <th class="col">Selling Price</th>
+                <!-- <th class="col">Stock</th>  (later) --> 
+                <th class="col">Category</th>
+                <!-- <th class="col">Stock Alert</th> -->
+                <th class="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+            <% productList.forEach( (element,index) =>{ %>
+
+            <tr>
+              <th scope="row"><%= index + 1  %></th>
+              <td><%= element.product_name %></td>
+              <td><%= element.product_sku %></td>
+              <td><%= element.brand %></td>
+              <td><%= element.model %></td>
+              <td><%= element.purchase_price %></td>
+              <td><%= element.selling_price %></td>
+              <td><%= element.category %></td>
+              <td> status </td>
+            </tr>
+           
+            <% } )%>
+          </tbody>
+
+
+      </table>
+
+  <% } %>
+    
+</div>
+
+<%- include("../partials/footer") %>

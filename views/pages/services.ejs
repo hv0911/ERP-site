@@ -1,0 +1,65 @@
+<%- include("../partials/head") %>
+
+<%- include("../partials/sidebar") %>
+
+<div class="main">
+
+
+    <!-- table data -->
+
+    <div class="heading">
+       <h3><a href="/service">Add Service</a></h3>
+    </div>
+
+    <div class="heading">
+        <h2>SERVICE LIST</h2>
+    </div>
+
+    <% if(!serviceList){ %>
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">SKU</th>
+                  <th scope="col">HOURLY RATE</th>
+                  <th class="col">Action</th>
+                </tr>
+              </thead>
+        </table>
+       <% } else {  %>
+    <table class="table table-success table-striped">
+        
+
+        <thead>
+            <tr>
+                <th scope="col">SL</th>
+                <th scope="col">Name</th>
+                <th scope="col">SKU</th>
+                <th scope="col">HOURLY RATE</th>
+                <th class="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+            <% serviceList.forEach( (element,index) =>{ %>
+
+            <tr>
+              <th scope="row"><%= index + 1  %></th>
+              <td><%= element.product_name %></td>
+              <td><%= element.sku %></td>
+              <td><%= element.hourly_rate %></td>
+              <td> status </td>
+            </tr>
+           
+            <% } )%>
+          </tbody>
+
+
+      </table>
+
+  <% } %>
+    
+</div>
+
+<%- include("../partials/footer") %>

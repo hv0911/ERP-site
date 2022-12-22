@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const categorySchema = new Schema({
+const CategorySchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -16,6 +16,10 @@ const categorySchema = new Schema({
     enum: ["Active", "DeActive"],
     required: true,
   },
+  parent: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+  },
 });
 
-module.exports = mongoose.model("Category", categorySchema);
+module.exports = mongoose.model("Category", CategorySchema);  

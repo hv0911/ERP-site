@@ -7,5 +7,5 @@ const port = process.env.PORT || 4000
 connectDatabase();
 
 app.listen(port, () => {
-    console.log(`server is listening on port ${port}`);
+    console.log(`server is listening on port ${port}`); 
 })

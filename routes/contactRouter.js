@@ -12,6 +12,7 @@ const {
   supplierDelete,
   customerUpdate,
   customerDelete,
+  getContactPage
 } = require("../controllers/contactContollers");
 
 const router = express.Router();
@@ -19,6 +20,8 @@ const router = express.Router();
 // router.get("/contact", createContactGet);
 
 router.post("/contact", createContactPost);
+
+router.get('/contact',getContactPage )
 
 //     <-- FOR SUPPLIERS -->
 
@@ -31,6 +34,9 @@ router.put("/supplier/:supplierID", supplierUpdate); // Not implemented
 router.delete("/supplier/:supplierID", supplierDelete); // Not implemented
 
 //   <-- FOR CUSTOMERS -->
+
+// router.get("/customer",getCustomer); // working
+
 
 router.get("/customers", getCustomers);
 

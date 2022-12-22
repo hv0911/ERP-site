@@ -1,63 +1,33 @@
 const Contact = require("../models/ContactModels/Contact");
 
-exports.createContactPost = async (req, res) => {
-  let uniqueId;
-  let number;
-  const suppliers = await Contact.find({ contact_type: "supplier" });
-  const customers = await Contact.find({ contact_type: "customer" });
 
-  if (!suppliers || !customers) {
-    if (req.body.contact_type === "supplier") {
-      uniqueId = "SUP-" + 200000;
-    } else {
-      uniqueId = "CUS-" + 100000;
-    }
-  } else {
-    if (req.body.contact_type === "supplier") {
-      number =
-        parseInt(suppliers[suppliers.length - 1].contactID.substring(5)) + 1;
-      console.log(number);
-      uniqueId = "SUP-" + number;
-    } else {
-      number =
-        parseInt(suppliers[customers.length - 1].contactID.substring(5)) + 1;
-      console.log(number);
-      uniqueId = "CUS-" + number;
-    }
-  }
+exports.getContactPage = (req, res, next) => {
 
-  // if (!contacts) {
-  //   if (req.body.contact_type === "supplier") {
-  //     uniqueId = "SUP-" + 200000;
-  //   } else {
-  //     uniqueId = "CUS-" + 100000;
-  //   }
-  // } else {
-  //   if (req.body.contact_type === "supplier") {
-  //     uniqueId = "SUP-" + number;
-  //   } else {
-  //     uniqueId = "CUS-" + number;
-  //   }
-  // }
+  res.render("pages/contact")
+
+}
+
+
+exports.createContactPost = async (req, res, next) => {
+ 
 
   const newContact = new Contact({
+
     contact_type: req.body.contact_type,
 
     name: req.body.name,
 
-    contactID: uniqueId,
-
-    profile_picture: req.body.profile_picture,
+    // profile_picture: req.body.profile_picture,
 
     business_name: req.body.business_name,
 
     tax_number: req.body.tax_number,
 
-    opening_balance: req.body.opening_balance,
+    // opening_balance: req.body.opening_balance,
 
-    pay_term: req.body.pay_term,
+    // pay_term: req.body.pay_term,
 
-    pay_term_condition: req.body.pay_term_condition,
+    // pay_term_condition: req.body.pay_term_condition,
 
     email: req.body.email,
 
@@ -65,7 +35,7 @@ exports.createContactPost = async (req, res) => {
 
     alt_mobile_no: req.body.alt_mobile_no,
 
-    password: req.body.password,
+     password: req.body.password,
 
     country: req.body.country,
 
@@ -76,14 +46,32 @@ exports.createContactPost = async (req, res) => {
     address: req.body.address,
 
     note: req.body.note,
+
   });
 
-  newContact.save();
-
-  return res.status(201).json({
-    success: true,
-    contact: newContact,
+  newContact.save((err) => {
+    if (err) {
+      return next(err)
+    }
   });
+
+  // return res.send("form submitted");
+   
+  if (req.body.contact_type === "Customer") {
+    console.log(req.body.contact_type)
+    return  res.redirect('/customers')
+   } else {
+     return res.redirect('/suppliers')  
+   }
+
+ 
+
+
+
+  //   return res.status(201).json({
+  //     success: true,
+  //     contact: newContact,
+  //   });
 };
 
 // exports.createContactGet = (req, res) => {
@@ -94,19 +82,19 @@ exports.createContactPost = async (req, res) => {
 
 exports.getSuppliers = async (req, res) => {
   try {
-    let suppliers = await Contact.find({ contact_type: "supplier" });
+    let suppliers = await Contact.find({ contact_type: "Supplier" });
 
     if (!suppliers) {
-      return res.status(404).json({
-        success: false,
-        message: "suppliers not found",
-      });
+     return res.render("pages/suppliers" , {title: "Suppliers" ,suppliers:"" })
     }
 
-    return res.status(201).json({
-      success: true,
-      suppliers: suppliers,
-    });
+    return res.status(201).render(
+      "pages/suppliers",
+      {
+        title: "Suppliers",
+        success: true,
+        suppliers: suppliers,
+      });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -133,7 +121,7 @@ exports.supplierDelete = (req, res) => {
 
 exports.getCustomers = async (req, res) => {
   try {
-    let customers = await Contact.find({ contact_type: "customer" });
+    let customers = await Contact.find({ contact_type: "Customer" });
 
     if (!customers) {
       return res.status(404).json({
@@ -142,10 +130,12 @@ exports.getCustomers = async (req, res) => {
       });
     }
 
-    return res.status(201).json({
-      success: true,
-      customers: customers,
-    });
+    return res.render(
+      "pages/customers" ,
+       {
+        success: true,
+        customers: customers,
+      });
   } catch (error) {
     return res.status(500).json({
       success: false,

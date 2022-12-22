@@ -1,0 +1,46 @@
+<%- include("../partials/head") %>
+
+<%- include("../partials/sidebar") %>
+
+<div class="main">
+
+<div class="heading">
+    <h3>ADD NEW SERVICE</h3>
+</div>
+
+<form action="/service" method="post">
+
+    <div class="form-row">
+
+        <div class="form-group col-md-4">
+            <label for="ServiceName">Service Name*</label>
+            <input type="text" class="form-control" id="ServiceName" placeholder="Service Name" name="product_name">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="ProductSKU">SKU</label>
+            <input type="text" class="form-control" id="ProductSKU" placeholder="SKU" name="sku">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="HourlyRate">Hourly Rate*</label>
+            <input type="number" class="form-control" id="HourlyRate" placeholder="Hourly Rate" name="hourly_rate">
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" placeholder="Description" name="decription">
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Add Service</button>
+
+</form>
+
+</div>
+
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,65 @@
+<%- include("../partials/head") %>
+
+<%- include("../partials/sidebar") %>
+
+<div class="main">
+
+
+    <!-- table data -->
+
+    <div class="heading">
+      <h3><a href="/contact">Add Contact</a></h3>
+   </div>
+
+
+
+    <% if(!suppliers){ %>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th class="col">Tax Number</th>
+                  <th class="col">Action</th>
+                </tr>
+              </thead>
+        </table>
+       <% }else{  %>
+    <table class="table">
+        
+
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">SL</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th class="col">Tax Number</th>
+              <th class="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+            <% suppliers.forEach((element, index)=>{ %>
+
+            <tr>
+              <th scope="row"><% index %></th>
+              <td><%= element.name %></td>
+              <td><%= element.email %></td>
+              <td><%= element.mobile_no %></td>
+              <td><%= element.tax_number %></td>
+            </tr>
+           
+            <% }) %>
+          </tbody>
+
+
+      </table>
+
+  <% } %>
+    
+</div>
+
+<%- include("../partials/footer") %>

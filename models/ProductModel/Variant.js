@@ -15,4 +15,4 @@ const modelSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Model", modelSchema);
+module.exports = mongoose.model("Variant", modelSchema);

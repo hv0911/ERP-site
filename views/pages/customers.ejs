@@ -1,0 +1,64 @@
+<%- include("../partials/head") %>
+
+<%- include("../partials/sidebar") %>
+
+<div class="main">
+
+
+    <!-- table data -->
+
+    <div class="heading">
+       <h3><a href="/contact">Add Contact</a></h3>
+    </div>
+
+    <% if(!customers){ %>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">SL</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th class="col">Tax Number</th>
+                  <th class="col">Action</th>
+                </tr>
+              </thead>
+        </table>
+       <% } else {  %>
+    <table class="table">
+        
+
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">SL</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th class="col">Tax Number</th>
+              <th class="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+            <% customers.forEach( (element,index) =>{ %>
+
+            <tr>
+              <th scope="row"><%= index + 1  %></th>
+              <td><%= element.name %></td>
+              <td><%= element.email %></td>
+              <td><%= element.mobile_no %></td>
+              <td><%= element.tax_number %></td>
+              <td> status </td>
+            </tr>
+           
+            <% } )%>
+          </tbody>
+
+
+      </table>
+
+  <% } %>
+    
+</div>
+
+<%- include("../partials/footer") %>

@@ -27,6 +27,9 @@ exports.Transaction = (req, res) => {
   });
 };
 
+
+
+
 exports.TransferList = async (req, res) => {
   try {
     const transferList = await Transfer.find({});
@@ -48,3 +51,22 @@ exports.TransferList = async (req, res) => {
     });
   }
 };
+
+
+exports.transfer = async(req,res)=>{
+
+const transfer = await Transfer.findById(req.params.Id);
+
+if(!transfer){
+  return res.status(201).json({
+    success:false,
+    messagse:"not found",
+  })
+}
+
+return res.status(201).json({
+  success:true,
+  transfer:transfer
+});
+
+}
