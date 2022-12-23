@@ -1082,13 +1082,18 @@ exports.createSingleProduct = async(req , res)=>{
         
         });
 
-       await product.save((err)=>{
-        if(err){
-          return next(err) ;
-        }
-       });
+        return res.status(201).json({
+            success:true,
+            product:product
+        })
 
-        return res.redirect("/products");
+    //    await product.save((err)=>{
+    //     if(err){
+    //       return next(err) ;
+    //     }
+    //    });
+
+    //     return res.redirect("/products");
 
 
         
@@ -1145,20 +1150,27 @@ exports.createService = async(req , res )=>{
             const productList = await SingleProduct.find({});
     
             if(!productList){
-              return res.status(404).render(
-                "pages/products",{
-                    productList:"",
-                    success:false
-                }
+              return res.status(404).json({
+                 
+                success:false,
+                message:"not products"
+              }
+                
               )
             }
+            console.log("Harsh")
+
+            return res.status(201).json({
+                success:true ,
+                productList
+            })
     
-            return res.status(201).render(  
-                "pages/products",
-                {
-                success:true,
-                productList:productList
-            });
+            // return res.status(201).render(  
+            //     "pages/products",
+            //     {
+            //     success:true,
+            //     productList:productList
+            // });
     
     
         } catch (error) {

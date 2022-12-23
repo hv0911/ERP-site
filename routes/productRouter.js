@@ -1,7 +1,8 @@
 const express = require("express");
 // const { createCategory, categoryList, categoryUpdateGet, updateCategory, deleteCategory, createBrand, brandList, updateBrandget, updateBrand, deleteBrand, ModelList, updateModelget, updateModel, createUnit, UnitList, updateUnitget, updateUnit, deleteUnit, createVariant, VariantList, updateVariantget, updateVariant, deleteVariant, createSingleProduct, ProductList, singleProduct, deleteSingleProduct, updateSingelProduct } = require("../controllers/productController.js");
 
-const { createProductGet, createServiceGet, createService,createSingleProduct, ServiceList, ProductList } = require("../controllers/productController")
+const { createProductGet, createServiceGet, createService,createSingleProduct, ServiceList, ProductList } = require("../controllers/productController");
+const { isAuthenticated } = require("../middleware/auth");
 const router = express.Router();    
 
 
@@ -86,10 +87,11 @@ const router = express.Router();
 
 router.get("/product", createProductGet );
 
-router.post("/product",createSingleProduct);
+// router.post("/product",createSingleProduct);
 
-router.get("/products",ProductList);
+router.route("/product" ).post(createSingleProduct); 
 
+router.route("/products").get(isAuthenticated , ProductList);
 
 
 router.get("/service", createServiceGet);
