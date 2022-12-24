@@ -1,16 +1,7 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  }
-  .home,
-  .services,
-  .reports,
-  .contact,
-  .events,
-  .support {
-  display: flex;
-  margin-left: 260px;
-  font-size: 2rem;
+
+.main {
+    margin-left: 250px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
   }
   
