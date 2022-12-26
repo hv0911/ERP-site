@@ -1030,17 +1030,17 @@ exports.updateCombo = (req,res)=>{
 
 //    Main Product  Controllers 
 
-exports.createProductGet = ( req , res , next )=>{
+// exports.createProductGet = ( req , res , next )=>{
 
-    res.render("pages/product");
+//     res.render("pages/product");
 
-}
+// }
 
-exports.createServiceGet = ( req , res , next  )=>{
+// exports.createServiceGet = ( req , res , next  )=>{
     
-    res.render("pages/service")
+//     res.render("pages/service")
 
-}
+// }
 
 
 exports.createSingleProduct = async(req , res)=>{
@@ -1081,6 +1081,12 @@ exports.createSingleProduct = async(req , res)=>{
         
         
         });
+
+        product.save((err)=>{
+            if(err){
+                return next(err);
+            }
+        })
 
         return res.status(201).json({
             success:true,

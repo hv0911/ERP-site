@@ -35,7 +35,7 @@ exports.createContactPost = async (req, res, next) => {
 
     alt_mobile_no: req.body.alt_mobile_no,
 
-     password: req.body.password,
+    password: req.body.password,
 
     country: req.body.country,
 

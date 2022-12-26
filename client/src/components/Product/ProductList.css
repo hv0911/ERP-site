@@ -1,0 +1,4 @@
+.subnav{
+    display: flex;
+    flex-direction: row;
+}

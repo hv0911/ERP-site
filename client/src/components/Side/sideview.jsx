@@ -94,18 +94,18 @@ const Sideview = () => {
 
         <li>
  
-        <Typography variant='h6' gutterBottom onClick={() => setToggle(toggleProduct, setToggleProduct)}><FaProductHunt/> Products  {toggleProduct  ? <FaAngleDown /> : <FaAngleRight />}</Typography>
+        <Typography variant='h6' gutterBottom onClick={() => setToggle(toggleProduct, setToggleProduct)}><FaProductHunt/>  Products  {toggleProduct  ? <FaAngleDown /> : <FaAngleRight />}</Typography>
 
 
           {
             toggleProduct && (
               <li>
-                <Link to="newProduct">
+                <Link to="product">
                   <Typography variant='h6' gutterBottom>  Add Product</Typography>
                 </Link>
 
 
-                <Link to="/newService">
+                <Link to="/service">
                   <Typography variant='h6' gutterBottom>Add Service</Typography>
                 </Link>
 
